@@ -1,0 +1,21 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: study-auth
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 100MB
+  main:
+    allow-bean-definition-overriding: true
+
+  profiles:
+    active: dev
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

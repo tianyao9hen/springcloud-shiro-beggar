@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/springcloud-shiro.iml" filepath="$PROJECT_DIR$/springcloud-shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-auth/study-auth.iml" filepath="$PROJECT_DIR$/study-auth/study-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-auth-api/study-auth-api.iml" filepath="$PROJECT_DIR$/study-auth-api/study-auth-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-common/study-common.iml" filepath="$PROJECT_DIR$/study-common/study-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-demo/study-demo.iml" filepath="$PROJECT_DIR$/study-demo/study-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-demo2/study-demo2.iml" filepath="$PROJECT_DIR$/study-demo2/study-demo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-eureka/study-eureka.iml" filepath="$PROJECT_DIR$/study-eureka/study-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-gateway/study-gateway.iml" filepath="$PROJECT_DIR$/study-gateway/study-gateway.iml" />
+    </modules>
+  </component>
+</project>

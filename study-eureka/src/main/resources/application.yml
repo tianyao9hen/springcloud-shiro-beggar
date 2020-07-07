@@ -1,0 +1,28 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: study-eureka
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+     prefer-ip-address: true
+     instance-id: ${spring.cloud.client.id-address}:${server.port}
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+    use-read-only-response-cache: false
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
+
+info:
+  app.name: micro-svc-eureka
+  company.name: test.com
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.version@"

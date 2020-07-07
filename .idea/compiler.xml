@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="study-auth" />
+        <module name="study-auth-api" />
+        <module name="study-common" />
+        <module name="study-demo" />
+        <module name="study-demo2" />
+        <module name="study-eureka" />
+        <module name="study-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springcloud-shiro" target="1.8" />
+      <module name="study-auth" target="1.8" />
+      <module name="study-auth-api" target="1.8" />
+      <module name="study-common" target="1.8" />
+      <module name="study-demo" target="1.8" />
+      <module name="study-demo2" target="1.8" />
+      <module name="study-eureka" target="1.8" />
+      <module name="study-gateway" target="1.8" />
+      <module name="study-redis" target="1.8" />
+      <module name="study-shiro" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

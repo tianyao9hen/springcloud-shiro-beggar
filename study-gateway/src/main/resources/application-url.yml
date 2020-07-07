@@ -1,0 +1,26 @@
+## 网关过滤器白名单配置
+#whitelist:
+#  urlset:
+#    /loginByMiniPro,
+#    /bindUserByMiniPro,
+#    /loginByPublicNo,
+#    /bindByPublicNo,
+#    /loginWithoutUser,
+#
+#    /checkToken,
+#    /getUserInfo,
+#    /byLoginName,
+#
+#    /login,
+#    /doLogin,
+#    /logout,
+#    /error,
+#    /unauthorized,
+#    /getPermission
+#
+#  fileset:
+#    css,
+#    js,
+#    ico,
+#    jpg,
+#    png

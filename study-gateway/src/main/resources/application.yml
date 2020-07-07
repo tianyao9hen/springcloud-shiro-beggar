@@ -1,0 +1,93 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: study-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: study-auth
+          uri: lb://STUDY-AUTH
+          predicates:
+            - Path=/auth/**
+        - id: study-demo
+          uri: lb://STUDY-DEMO
+          predicates:
+            - Path=/demo/**
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+    hostname: study-gateway
+    port: 7001
+  client:
+    service-url:
+      register-with-eureka: true
+      fetch-reigtry: true
+      defaultZone: http://${spring.cloud.client.ip-address}:${eureka.instance.port}/eureka/
+
+# 设置Feign客户端超时时间（OpenFeign默认支持ribbon）
+ribbon:
+  # 指的是建立连接后服务器读取到可用资源所用的时间，就是服务执行的时间
+  ReadTimeout: 50000
+  # 指的是建立连接所用的时间，适用于网络状况正常情况下，两端连接所有的时间
+  ConnectTimeout: 50000
+
+#  profiles:
+#    include: url
+#    active: dev
+#zuul:
+#  add-host-header: true
+#  servlet-path: /gateway
+#  host:
+#    socket-timeout-millis: 60000
+#    connect-timeout-millis: 60000
+#    max-per-route-connections: 500
+#  sensitive-headers:
+#
+#
+#hystrix:
+#   command:
+#      default:
+#        execution:
+#          isolation:
+#            thread:
+#              timeoutInMilliseconds: 60000
+#   threadpool:
+#    default:
+#      coreSize: 50
+#      maximumSize: 10000
+#      allowMaximumSizeToDivergeFromCoreSize: true
+#      maxQueueSize: -1
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
+#
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: STUDY-AUTH
+#  ReadTimeout: 60000
+#  ConnectTimeout: 60000
+#  MaxAutoRetries: 1
+#
+#cloud:
+#  hystrix:
+#    enabled: true
+
+info:
+  app.name: ${spring.application.name}
+  company.name: test.com
+  build.groupId: "@project.parent.groupId@" ##yml文件用@，properties文件用$ resource.filtering必须设置为true
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.parent.version@"
