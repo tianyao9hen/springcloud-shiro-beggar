@@ -75,6 +75,7 @@ public class LoginController {
     public UserEntity checkPermission(HttpServletRequest request, @RequestParam("sessionId") String sessionId, @RequestParam("checkUrl") String checkUrl){
         String key = KEY_PREFIX + sessionId;
         Session session = (Session) redisUtil.get(key);
+        //Session session = getSubject().getSession();
         if(session==null){
             UserEntity userEntity1 = new UserEntity();
             userEntity1.setLoginName("权限没有了1");
