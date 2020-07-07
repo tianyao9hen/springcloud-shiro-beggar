@@ -12,8 +12,6 @@
         <module>study-eureka</module>
         <module>study-gateway</module>
         <module>study-auth</module>
-        <module>study-shiro</module>
-        <module>study-redis</module>
         <module>study-common</module>
         <module>study-demo</module>
         <module>study-auth-api</module>
