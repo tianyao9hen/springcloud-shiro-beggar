@@ -1,0 +1,50 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: study-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+#        - id: study-auth
+#          uri: lb://STUDY-AUTH
+#          predicates:
+#            - Path=/auth/**
+        - id: study-auth
+          uri: lb://STUDY-AUTH-JWT
+          predicates:
+            - Path=/auth/**
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+    hostname: study-gateway-jwt
+    port: 7001
+  client:
+    service-url:
+      register-with-eureka: true
+      fetch-reigtry: true
+      defaultZone: http://${spring.cloud.client.ip-address}:${eureka.instance.port}/eureka/
+
+# 设置Feign客户端超时时间（OpenFeign默认支持ribbon）
+ribbon:
+  # 指的是建立连接后服务器读取到可用资源所用的时间，就是服务执行的时间
+  ReadTimeout: 50000
+  # 指的是建立连接所用的时间，适用于网络状况正常情况下，两端连接所有的时间
+  ConnectTimeout: 50000
+
+info:
+  app.name: ${spring.application.name}
+  company.name: test.com
+  build.groupId: "@project.parent.groupId@" ##yml文件用@，properties文件用$ resource.filtering必须设置为true
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.parent.version@"

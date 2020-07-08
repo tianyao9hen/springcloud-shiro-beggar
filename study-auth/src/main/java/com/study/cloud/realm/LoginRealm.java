@@ -11,6 +11,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * LoginRealm
  *
@@ -25,9 +28,16 @@ public class LoginRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+        //UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getSession().getAttribute("userEntity");
+        //SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        //info.addStringPermissions(userEntity.getPermission());
+        //return info;
+        //这个方法不会访问
+        System.out.println("进入角色授权");
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addStringPermissions(userEntity.getPermission());
+        Set<String> permission = new HashSet<>();
+        permission.add("/test");
+        info.addStringPermissions(permission);
         return info;
     }
 

@@ -2,6 +2,7 @@ package com.study.cloud.config;
 
 import com.study.cloud.realm.LoginRealm;
 import com.study.cloud.redis.RedisSessionDao;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -33,6 +34,8 @@ public class ShiroConfig {
         /*map.put("/index","authc");
         map.put("/manage","perms[manage]");
         map.put("/administrator","roles[administrator]");*/
+        map.put("/demo/test","perms[/test]");
+        map.put("/test","perms[/test]");
         map.put("/**","anon");
         factoryBean.setFilterChainDefinitionMap(map);
         //设置如果没有通过校验，发送的请求
@@ -85,6 +88,11 @@ public class ShiroConfig {
     @Bean
     public RedisSessionDao redisSessionDao(){
         return new RedisSessionDao();
+    }
+
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
+        return new LifecycleBeanPostProcessor();
     }
 
 }

@@ -5,7 +5,10 @@ import com.study.cloud.utils.RedisUtil;
 import com.study.entities.UserEntity;
 import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Set;
 
+import static org.apache.shiro.SecurityUtils.getSecurityManager;
 import static org.apache.shiro.SecurityUtils.getSubject;
 
 /**
@@ -73,20 +77,32 @@ public class LoginController {
     @PostMapping("/checkPermission")
     @ResponseBody
     public UserEntity checkPermission(HttpServletRequest request, @RequestParam("sessionId") String sessionId, @RequestParam("checkUrl") String checkUrl){
-        String key = KEY_PREFIX + sessionId;
-        Session session = (Session) redisUtil.get(key);
         //Session session = getSubject().getSession();
-        if(session==null){
+        /*if(oldSession==null){
             UserEntity userEntity1 = new UserEntity();
             userEntity1.setLoginName("权限没有了1");
             return userEntity1;
         }
-        UserEntity userEntity = (UserEntity) session.getAttribute("userEntity");
+        UserEntity userEntity = (UserEntity) oldSession.getAttribute("userEntity");
         if(userEntity == null){
             UserEntity userEntity1 = new UserEntity();
             userEntity1.setLoginName("权限没有了2");
             return userEntity1;
-        }
+        }*/
+        /*UserEntity userEntity = (UserEntity) oldSession.getAttribute("userEntity");
+        UsernamePasswordToken token = new UsernamePasswordToken(userEntity.getLoginName(),userEntity.getLoginPasswd());
+        SecurityUtils.getSubject().checkPermission("/test");
+        SecurityUtils.getSubject().getPrincipal();
+        SecurityUtils.getSubject().getSession().setAttribute("userEntity",userEntity);
+        Session session = getSubject().getSession();
+        session.setAttribute("userEntity",userEntity);
+        boolean permitted = getSubject().isPermitted("/test");
+        PrincipalCollection previousPrincipals = getSubject().getPreviousPrincipals();
+        boolean permitted1 = getSecurityManager().isPermitted(previousPrincipals, "/test");*/
+
+        String key = KEY_PREFIX + sessionId;
+        Session oldSession = (Session) redisUtil.get(key);
+        UserEntity userEntity = (UserEntity) oldSession.getAttribute("userEntity");
         Set<String> permission = userEntity.getPermission();
         Boolean contains = permission.contains(checkUrl);
         if(contains){

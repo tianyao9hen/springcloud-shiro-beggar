@@ -39,4 +39,9 @@ public class DemoController {
         String demo2 = demo2FeignService.getDemo2();
         return userEntity.getUserName() + ": 获取demo.test : "+demo2;
     }
+
+    @PostMapping("/jwtText")
+    public String jwtDemo(){
+        return "jwtDemo";
+    }
 }

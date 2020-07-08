@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -74,6 +75,8 @@ public class UserEntity implements Serializable {
 	 * 用户登录成功生成的token
 	 */
 	private String token;
+
+	private Map<String,Object> clain;
 
 	/**
 	 * 用户类型：0内部用户 1公众用户

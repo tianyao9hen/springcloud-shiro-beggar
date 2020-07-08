@@ -16,6 +16,8 @@
         <module>study-demo</module>
         <module>study-auth-api</module>
         <module>study-demo2</module>
+        <module>study-gateway-jwt</module>
+        <module>study-auth-jwt</module>
     </modules>
 
     <parent>
